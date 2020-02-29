@@ -1,0 +1,25 @@
+<div class="container-fluid mb-3">
+  <div class="row justify-content-center">
+    <div class="col-md-9">
+      <input
+        type="text"
+        class="form-control form-control-sm mb-2 mt-2"
+        placeholder="Type to filter..."
+        (keyup)="filterDatatable($event)"
+      />
+      <ngx-datatable
+      #table
+        class="bootstrap" 
+        [rows]="locationStats" 
+        [columns]="columns" 
+        [columnMode]="'force'"
+        [loadingIndicator]="loadingIndicator" 
+        [headerHeight]="50" 
+        [footerHeight]="50"
+        [rowHeight]="'auto'" 
+        [limit]="10"       
+        >
+      </ngx-datatable>
+    </div>
+  </div>
+</div>

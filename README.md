@@ -11,4 +11,4 @@ Track CoronaVirus cases by Countries - cases updated daily
 <p>Making the UI more presentable!</p>
 
 # Have a Look:
-<img src="https://i.imgur.com/nu2Tcp7.jpg">
+<img src="https://i.imgur.com/RuDjYIB.png">

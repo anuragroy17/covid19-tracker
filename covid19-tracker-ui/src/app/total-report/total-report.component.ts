@@ -8,15 +8,15 @@ import { TotalReportsService, Totals } from "../_shared";
 })
 export class TotalReportComponent implements OnInit {
   totals: Totals;
-  loadingIndicator: boolean = false;
+  loading: boolean = false;
 
   constructor(private totalReportsService: TotalReportsService) {}
 
   ngOnInit(): void {
-    this.loadingIndicator = true;
+    this.loading = true;
     this.totalReportsService.getCovid19Cases().subscribe(totals => {
       this.totals = totals;
-      this.loadingIndicator = false;
+      this.loading = false;
     });
   }
 }

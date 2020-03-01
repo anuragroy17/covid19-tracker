@@ -9,7 +9,7 @@ import { DatatableComponent } from '@swimlane/ngx-datatable';
 })
 export class TrackerDataComponent implements OnInit {  
 
-  loading: boolean = false;
+  loadingIndicator: boolean = false;
   locationStats: LocationStats[] = [];
   columns = [
     { prop: 'state' },
@@ -24,11 +24,11 @@ export class TrackerDataComponent implements OnInit {
   constructor(private covidDataService:CovidDataService) { }
 
   ngOnInit(): void {
-    this.loading = true;
+    this.loadingIndicator = true;
     this.covidDataService.getCovid19Data().subscribe(locationStats => {
       this.locationStats = locationStats;
       this.filteredData = [...locationStats];
-      this.loading = false;
+      this.loadingIndicator = false;
       // console.log(this.locationStats)
   });
   }

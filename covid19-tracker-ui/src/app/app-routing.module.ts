@@ -6,11 +6,12 @@ import { RecoveryDataComponent } from './recovery-data/recovery-data.component';
 
 
 const routes: Routes = [
+  
+  { path: '', redirectTo: '/confirmed',  pathMatch: 'full' },
   { path: 'confirmed', component: ConfirmedDataComponent },
   { path: 'deaths', component: DeathDataComponent },
   { path: 'recoveries', component: RecoveryDataComponent },
   // otherwise redirect to home
-  {path: '', redirectTo: 'confirmed',  pathMatch: 'full' },
   { path: '**', redirectTo: '' }
 ];
 

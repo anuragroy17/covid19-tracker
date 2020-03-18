@@ -1,6 +1,6 @@
 package com.anuragroy.covid19tracker.models;
 
-public class LocationStats {
+public class ConfirmedLocationStats {
     private String state;
     private String country;
     private int latestTotalCases;

@@ -1,6 +1,6 @@
 package com.anuragroy.covid19tracker.models;
 
-public class Totals {
+public class TotalConfirmed {
     private int totalNewCases;
     private int totalReportedCases;
 

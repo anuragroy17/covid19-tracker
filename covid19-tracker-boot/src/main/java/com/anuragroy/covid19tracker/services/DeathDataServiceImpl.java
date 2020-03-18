@@ -1,7 +1,7 @@
 package com.anuragroy.covid19tracker.services;
 
-import com.anuragroy.covid19tracker.models.LocationStats;
-import com.anuragroy.covid19tracker.models.Totals;
+import com.anuragroy.covid19tracker.models.DeathLocationStats;
+import com.anuragroy.covid19tracker.models.TotalDeaths;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.http.HttpEntity;
@@ -20,31 +20,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class Covid19DataServiceImpl implements Covid19DataService{
+public class DeathDataServiceImpl implements DeathDataService{
 
     private final CloseableHttpClient httpClient = HttpClients.createDefault();
-    private static String VIRUS_DATA_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv";
-    private List<LocationStats> allStats = new ArrayList<>();
+    private static String VIRUS_DATA_URL_DEATH = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv";
+    private List<DeathLocationStats> deathLocationStats = new ArrayList<>();
 
     @Override
-    public List<LocationStats> getAllStats() {
-        return allStats;
+    public List<DeathLocationStats> getDeathLocationStats() {
+        return deathLocationStats;
     }
 
     @Override
-    public Totals getTotalCases() {
-        Totals totals = new Totals();
-        totals.setTotalReportedCases(allStats.stream().mapToInt(stat -> stat.getLatestTotalCases()).sum());
-        totals.setTotalNewCases(allStats.stream().mapToInt(stat -> stat.getDiffFromPrevDay()).sum());
+    public TotalDeaths getTotalDeathCases() {
+        TotalDeaths totals = new TotalDeaths();
+        totals.setTotalReportedDeaths(deathLocationStats.stream().mapToInt(stat -> stat.getLatestTotalDeaths()).sum());
+        totals.setTotalNewDeaths(deathLocationStats.stream().mapToInt(stat -> stat.getDiffFromPrevDay()).sum());
         return totals;
     }
 
     @PostConstruct
     @Scheduled(cron = "* * 1 * * *")
-    public void fetchVirusData() throws IOException {
-        List<LocationStats> newStats = new ArrayList<>();
+    public void fetchDeathsData() throws IOException {
+        List<DeathLocationStats> newStats = new ArrayList<>();
 
-        HttpGet request = new HttpGet(VIRUS_DATA_URL);
+        HttpGet request = new HttpGet(VIRUS_DATA_URL_DEATH);
         try (CloseableHttpResponse response = httpClient.execute(request)) {
 //            System.out.println(response.getStatusLine().toString());
             HttpEntity entity = response.getEntity();
@@ -53,16 +53,16 @@ public class Covid19DataServiceImpl implements Covid19DataService{
                 StringReader csvBodyReaders = new StringReader(result);
                 Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvBodyReaders);
                 for (CSVRecord record : records) {
-                    LocationStats locationStat = new LocationStats();
+                    DeathLocationStats locationStat = new DeathLocationStats();
                     locationStat.setState(record.get("Province/State"));
                     locationStat.setCountry(record.get("Country/Region"));
                     int latestCases = Integer.parseInt(record.get(record.size() - 1));
                     int prevDayCases = Integer.parseInt(record.get(record.size() - 2));
-                    locationStat.setLatestTotalCases(latestCases);
+                    locationStat.setLatestTotalDeaths(latestCases);
                     locationStat.setDiffFromPrevDay(latestCases - prevDayCases);
                     newStats.add(locationStat);
                 }
-                this.allStats = newStats;
+                this.deathLocationStats = newStats;
             }
         }
     }

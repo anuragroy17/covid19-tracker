@@ -7,8 +7,5 @@ Track CoronaVirus cases by Countries - cases updated daily
 <li>Data is collected from this repository - <a href="https://github.com/CSSEGISandData/COVID-19">CSSEGISandData/COVID-19</a></li>
 </ul>
 
-<h4>Future Implementation</h4>
-<p>Making the UI more presentable!</p>
-
 <h4>Have a Look</h4>
-<img src="https://i.imgur.com/RuDjYIB.png">
+<img src="https://i.imgur.com/JUFrmeb.png">

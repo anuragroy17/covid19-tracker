@@ -6,12 +6,21 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class TotalReportsService {
+export class RecoveryDataService {
 
   constructor(private http: HttpClient) { }
 
-  getCovid19Cases() {
-    return this.http.get<any>(`${config.apiUrl}/getTotalCases`)
+  getRecoveryLocationStats() {
+    return this.http.get<any>(`${config.apiUrl}/getRecoveryLocationStats`)
+        .pipe(map(locationStats => {
+          // console.log(JSON.stringify(locationStats));
+            return locationStats;
+        }));
+      }
+
+  
+  getTotalRecoveredCases() {
+    return this.http.get<any>(`${config.apiUrl}/getTotalRecoveredCases`)
         .pipe(map(totals => {
           // console.log(JSON.stringify(locationStats));
             return totals;

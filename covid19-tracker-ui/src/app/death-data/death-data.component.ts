@@ -1,54 +1,63 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { CovidDataService, LocationStats } from "../_shared";
-import { DatatableComponent } from "@swimlane/ngx-datatable";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DatatableComponent } from '@swimlane/ngx-datatable';
+import { DeathDataService, TotalDeaths, DeathLocationStats } from '../_shared';
 
 @Component({
-  selector: "app-tracker-data",
-  templateUrl: "./tracker-data.component.html",
-  styleUrls: ["./tracker-data.component.scss"]
+  selector: 'app-death-data',
+  templateUrl: './death-data.component.html',
+  styleUrls: ['./death-data.component.scss']
 })
-export class TrackerDataComponent implements OnInit {
+export class DeathDataComponent implements OnInit {
+
+  totals: TotalDeaths;
+  loading: boolean = false;
 
   screenHeight: number;
   screenWidth: number;
   lastColName: String = "Difference from Previous Day";
-  secLastCol: string = "Latest Total Cases";
+  secLastCol: string = "Latest Total Deaths";
   showDetail: boolean = false;  
   loadingIndicator: boolean = false;
 
-  locationStats: LocationStats[] = [];
+  locationStats: DeathLocationStats[] = [];
   columns = [
     { prop: "state" },
     { name: "Country" },
-    { name: "Latest Total Cases" },
+    { name: "Latest Total Deaths" },
     { prop: "diffFromPrevDay", name: "Difference from Previous Day" }
   ];
   filteredData = [];
 
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
-  constructor(private covidDataService: CovidDataService) {
+  constructor(private deathDataService: DeathDataService) {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
     // console.log(this.screenWidth)
     if(this.screenWidth < 1187){
       this.lastColName = "DFPD";
-      this.secLastCol = "LTC"
+      this.secLastCol = "LTD";
       this.showDetail = true;
     }else{
       this.lastColName = "Difference from Previous Day";
-      this.secLastCol = "Latest Total Cases";
+      this.secLastCol = "Latest Total Deaths";
       this.showDetail = false;
     }
   }
 
   ngOnInit(): void {
     this.loadingIndicator = true;
-    this.covidDataService.getCovid19Data().subscribe(locationStats => {
+    this.deathDataService.getDeathLocationStats().subscribe(locationStats => {
       this.locationStats = locationStats;
       this.filteredData = [...locationStats];
       this.loadingIndicator = false;
       // console.log(this.locationStats)
+    });
+
+    this.loading = true;
+    this.deathDataService.getTotalDeathCases().subscribe(totals => {
+      this.totals = totals;
+      this.loading = false;
     });
   }
 
@@ -80,5 +89,6 @@ export class TrackerDataComponent implements OnInit {
     // whenever the filter changes, always go back to the first page
     this.table.offset = 0;
   }
+
 
 }

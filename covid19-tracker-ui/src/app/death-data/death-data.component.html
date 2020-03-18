@@ -1,0 +1,47 @@
+<div class="card justify-content-center mb-3">
+    <h5 class="card-header">Totals: </h5>
+    <div class="card-body">
+        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+        <h5 *ngIf="totals" class="card-title text-danger"><strong>{{totals.totalReportedDeaths}}</strong></h5>
+        <p class="card-text">Total deaths reported as of today.</p>
+        <hr class="my-4">
+        <p>
+            <span>New deaths reported since previous day:</span>
+            <span *ngIf="loading" class="spinner-border spinner-border-sm"></span>
+            <span *ngIf="totals" class="text-danger"><strong>{{totals.totalNewDeaths}}</strong></span>
+        </p>
+    </div>
+  </div>
+  
+  <div class="container-fluid mb-3">
+    <div class="row justify-content-center">
+      <div class="col-md-9">
+        
+        <input
+          type="text"
+          class="form-control form-control-sm mb-2 mt-2 formattedInput"
+          placeholder="Type to filter..."
+          (keyup)="filterDatatable($event)"
+        />
+        <div *ngIf="showDetail" class="text-center">
+          <p style="font-size: 12px;">LTD - Latest Total Deaths; DFPD - Difference from Previous Day</p>
+        </div>
+        <ngx-datatable
+        #table
+          class="bootstrap" 
+          [rows]="locationStats" 
+          [columnMode]="'force'"
+          [loadingIndicator]="loadingIndicator" 
+          [headerHeight]="50" 
+          [footerHeight]="50"
+          [rowHeight]="'auto'" 
+          [limit]="10"   
+          >
+          <ngx-datatable-column name="State" prop="state" [width]="200"></ngx-datatable-column>
+          <ngx-datatable-column name="Country" [width]="250"></ngx-datatable-column>
+          <ngx-datatable-column [name]="secLastCol" [width]="200" prop="latestTotalCases"></ngx-datatable-column>
+          <ngx-datatable-column [name]="lastColName" [width]="200" prop="diffFromPrevDay"></ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+    </div>
+  </div>

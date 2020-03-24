@@ -10,14 +10,6 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {    
-    this.playAudio();
-  }
-
-  playAudio(){
-    let audio = new Audio();
-    audio.src = "/assets/music/Audiomachine - Watch the World Burn.mp3";
-    audio.load();
-    audio.play();
   }
 
   

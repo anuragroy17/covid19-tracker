@@ -43,8 +43,18 @@ public class RecoveryDataServiceImpl implements RecoveryDataService {
                     RecoveredLocationStats locationStat = new RecoveredLocationStats();
                     locationStat.setState(record.get("Province/State"));
                     locationStat.setCountry(record.get("Country/Region"));
-                    int latestCases = Integer.parseInt(record.get(record.size() - 1));
-                    int prevDayCases = Integer.parseInt(record.get(record.size() - 2));
+                    int latestCases = 0;
+                    int prevDayCases = 0;
+                    if(record.get(record.size() - 1).equals("")){
+                        latestCases = 0;
+                    } else {
+                        latestCases = Integer.parseInt(record.get(record.size() - 1));
+                    }
+                    if(record.get(record.size() - 2).equals("")){
+                        prevDayCases = 0;
+                    } else {
+                        prevDayCases = Integer.parseInt(record.get(record.size() - 2));
+                    }
                     locationStat.setLatestTotalRecovered(latestCases);
                     locationStat.setDiffFromPrevDay(latestCases - prevDayCases);
                     newStats.add(locationStat);

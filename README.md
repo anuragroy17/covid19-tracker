@@ -8,4 +8,4 @@ Track CoronaVirus cases by Countries - cases updated daily
 </ul>
 
 <h4>Have a Look</h4>
-<img src="https://i.imgur.com/JUFrmeb.png">
+<img src="https://i.imgur.com/hT19oUf.png">

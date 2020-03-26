@@ -1,13 +1,17 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, OnDestroy } from "@angular/core";
 import { ConfirmedDataService, ConfirmedLocationStats, TotalConfirmed } from "../_shared";
 import { DatatableComponent } from "@swimlane/ngx-datatable";
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: "app-confirmed-data",
   templateUrl: "./confirmed-data.component.html",
   styleUrls: ["./confirmed-data.component.scss"]
 })
-export class ConfirmedDataComponent implements OnInit {
+export class ConfirmedDataComponent implements OnInit, OnDestroy {
+  private unsubscribe$ = new Subject<void>();
+  
   totals: TotalConfirmed;
   loading: boolean = false;
 
@@ -46,7 +50,9 @@ export class ConfirmedDataComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadingIndicator = true;
-    this.confirmedDataService.getConfirmedLocationStats().subscribe(locationStats => {
+    this.confirmedDataService.getConfirmedLocationStats()
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe(locationStats => {
       this.locationStats = locationStats;
       this.filteredData = [...locationStats];
       this.loadingIndicator = false;
@@ -54,7 +60,9 @@ export class ConfirmedDataComponent implements OnInit {
     });
 
     this.loading = true;
-    this.confirmedDataService.getTotalConfirmedCases().subscribe(totals => {
+    this.confirmedDataService.getTotalConfirmedCases()
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe(totals => {
       this.totals = totals;
       this.loading = false;
     });
@@ -87,6 +95,11 @@ export class ConfirmedDataComponent implements OnInit {
     });
     // whenever the filter changes, always go back to the first page
     this.table.offset = 0;
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
 }

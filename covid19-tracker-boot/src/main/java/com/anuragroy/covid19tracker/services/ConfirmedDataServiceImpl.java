@@ -23,7 +23,7 @@ import java.util.List;
 public class ConfirmedDataServiceImpl implements ConfirmedDataService {
 
     private final CloseableHttpClient httpClient = HttpClients.createDefault();
-    private static String VIRUS_DATA_URL_CONFIRMED = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv";
+    private static String VIRUS_DATA_URL_CONFIRMED = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
     private List<ConfirmedLocationStats> confirmedLocationStats = new ArrayList<>();
 
     @Override

@@ -10,6 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DeathDataComponent } from './death-data/death-data.component';
 import { RecoveryDataComponent } from './recovery-data/recovery-data.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { RecoveryDataComponent } from './recovery-data/recovery-data.component';
     ConfirmedDataComponent,
     NavbarComponent,
     DeathDataComponent,
-    RecoveryDataComponent
+    RecoveryDataComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

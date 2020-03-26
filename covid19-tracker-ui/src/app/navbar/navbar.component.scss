@@ -1,11 +1,16 @@
-@import url("https://fonts.googleapis.com/css?family=Lobster+Two:700&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Baloo+Da+2&display=swap');
+
+@font-face {
+  font-family: elianto;
+  src: url(../../assets/fonts/Elianto-Regular.otf);
+}
 
 .btn {
     border-radius: 0;
 }
 
 h1 {
-  color: #BF3836;
-  font-family: "Lobster Two", cursive;
-  text-decoration: underline;
+  color: #340556;
+  font-family: elianto, cursive;
+  // text-decoration: underline;
 }

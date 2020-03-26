@@ -15,6 +15,7 @@ body {
 body {
   font-family: Verdana, Geneva, sans-serif;
   background-color: red($color: #f1f1f1);
+  padding-bottom: 200px;
 }
 
 //Decorate the ScrollBar
@@ -28,5 +29,5 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background: #BF3836;
+  background: #570978;
 }

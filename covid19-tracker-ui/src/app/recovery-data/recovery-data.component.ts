@@ -1,13 +1,16 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { RecoveryDataService, TotalRecovered, RecoveredLocationStats } from '../_shared';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-recovery-data',
   templateUrl: './recovery-data.component.html',
   styleUrls: ['./recovery-data.component.scss']
 })
-export class RecoveryDataComponent implements OnInit {
+export class RecoveryDataComponent implements OnInit,OnDestroy {   
+  private unsubscribe$ = new Subject<void>();
 
   totals: TotalRecovered;
   loading: boolean = false;
@@ -47,7 +50,9 @@ export class RecoveryDataComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadingIndicator = true;
-    this.recoveryDataService.getRecoveryLocationStats().subscribe(locationStats => {
+    this.recoveryDataService.getRecoveryLocationStats()
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe(locationStats => {
       this.locationStats = locationStats;
       this.filteredData = [...locationStats];
       this.loadingIndicator = false;
@@ -55,7 +60,9 @@ export class RecoveryDataComponent implements OnInit {
     });
 
     this.loading = true;
-    this.recoveryDataService.getTotalRecoveredCases().subscribe(totals => {
+    this.recoveryDataService.getTotalRecoveredCases()
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe(totals => {
       this.totals = totals;
       this.loading = false;
     });
@@ -88,6 +95,11 @@ export class RecoveryDataComponent implements OnInit {
     });
     // whenever the filter changes, always go back to the first page
     this.table.offset = 0;
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
 }

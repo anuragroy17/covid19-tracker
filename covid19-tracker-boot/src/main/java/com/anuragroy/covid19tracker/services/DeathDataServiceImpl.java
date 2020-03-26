@@ -23,7 +23,7 @@ import java.util.List;
 public class DeathDataServiceImpl implements DeathDataService{
 
     private final CloseableHttpClient httpClient = HttpClients.createDefault();
-    private static String VIRUS_DATA_URL_DEATH = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv";
+    private static String VIRUS_DATA_URL_DEATH = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv";
     private List<DeathLocationStats> deathLocationStats = new ArrayList<>();
 
     @Override

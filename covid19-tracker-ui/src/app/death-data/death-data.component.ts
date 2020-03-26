@@ -1,13 +1,16 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { DeathDataService, TotalDeaths, DeathLocationStats } from '../_shared';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-death-data',
   templateUrl: './death-data.component.html',
   styleUrls: ['./death-data.component.scss']
 })
-export class DeathDataComponent implements OnInit {
+export class DeathDataComponent implements OnInit, OnDestroy {  
+  private unsubscribe$ = new Subject<void>();
 
   totals: TotalDeaths;
   loading: boolean = false;
@@ -47,7 +50,9 @@ export class DeathDataComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadingIndicator = true;
-    this.deathDataService.getDeathLocationStats().subscribe(locationStats => {
+    this.deathDataService.getDeathLocationStats()
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe(locationStats => {
       this.locationStats = locationStats;
       this.filteredData = [...locationStats];
       this.loadingIndicator = false;
@@ -55,7 +60,9 @@ export class DeathDataComponent implements OnInit {
     });
 
     this.loading = true;
-    this.deathDataService.getTotalDeathCases().subscribe(totals => {
+    this.deathDataService.getTotalDeathCases()
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe(totals => {
       this.totals = totals;
       this.loading = false;
     });
@@ -88,6 +95,11 @@ export class DeathDataComponent implements OnInit {
     });
     // whenever the filter changes, always go back to the first page
     this.table.offset = 0;
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
 

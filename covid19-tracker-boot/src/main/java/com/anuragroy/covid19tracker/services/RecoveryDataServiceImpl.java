@@ -23,7 +23,7 @@ import java.util.List;
 public class RecoveryDataServiceImpl implements RecoveryDataService {
 
     private final CloseableHttpClient httpClient = HttpClients.createDefault();
-    private static String VIRUS_DATA_URL_RECOVERIES = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv";
+    private static String VIRUS_DATA_URL_RECOVERIES = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv";
     private List<RecoveredLocationStats> recoveredLocationStats = new ArrayList<>();
 
     @PostConstruct
@@ -41,7 +41,8 @@ public class RecoveryDataServiceImpl implements RecoveryDataService {
                 Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvBodyReaders);
                 for (CSVRecord record : records) {
                     RecoveredLocationStats locationStat = new RecoveredLocationStats();
-                    locationStat.setState(record.get("Province/State"));
+//                    locationStat.setState(record.get("Province/State"));
+                    locationStat.setState(record.get(0));
                     locationStat.setCountry(record.get("Country/Region"));
                     int latestCases = 0;
                     int prevDayCases = 0;

@@ -89,7 +89,7 @@
 							<goal>npm</goal>
 						</goals>
 						<configuration>
-							<arguments>run-script</arguments>
+							<arguments>run-script prodBuild</arguments>
 						</configuration>
 					</execution>
 				</executions>

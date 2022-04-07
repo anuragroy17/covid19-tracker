@@ -79,6 +79,7 @@
 							<goal>npm</goal>
 						</goals>
 						<configuration>
+							<skip>false</skip>
 							<arguments>install</arguments>
 						</configuration>
 					</execution>

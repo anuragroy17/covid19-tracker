@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "prodBuild": "ng build --configuration=production --progress=true --aot=true --service-worker=false --build-optimizer=true --optimization=true --output-hashing=all --source-map=false --vendor-chunk=true",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

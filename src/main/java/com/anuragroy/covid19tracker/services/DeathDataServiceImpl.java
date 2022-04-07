@@ -26,7 +26,7 @@ public class DeathDataServiceImpl implements DeathDataService{
     private final CloseableHttpClient httpClient = HttpClients.createDefault();
 
     @Value("${url.deathUrl}")
-    private static String VIRUS_DATA_URL_DEATH;
+    private String VIRUS_DATA_URL_DEATH;
 
     private List<DeathLocationStats> deathLocationStats = new ArrayList<>();
 

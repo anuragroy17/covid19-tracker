@@ -26,7 +26,7 @@ public class ConfirmedDataServiceImpl implements ConfirmedDataService {
     private final CloseableHttpClient httpClient = HttpClients.createDefault();
 
     @Value("${url.confirmedUrl}")
-    private static String VIRUS_DATA_URL_CONFIRMED;
+    private String VIRUS_DATA_URL_CONFIRMED;
 
     private List<ConfirmedLocationStats> confirmedLocationStats = new ArrayList<>();
 

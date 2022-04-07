@@ -26,7 +26,7 @@ public class RecoveryDataServiceImpl implements RecoveryDataService {
     private final CloseableHttpClient httpClient = HttpClients.createDefault();
 
     @Value("${url.recoveryUrl}")
-    private static String VIRUS_DATA_URL_RECOVERIES;
+    private String VIRUS_DATA_URL_RECOVERIES;
 
     private List<RecoveredLocationStats> recoveredLocationStats = new ArrayList<>();
 

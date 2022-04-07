@@ -10,6 +10,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,10 @@ import java.util.List;
 public class DeathDataServiceImpl implements DeathDataService{
 
     private final CloseableHttpClient httpClient = HttpClients.createDefault();
-    private static String VIRUS_DATA_URL_DEATH = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv";
+
+    @Value("${url.deathUrl}")
+    private String VIRUS_DATA_URL_DEATH;
+
     private List<DeathLocationStats> deathLocationStats = new ArrayList<>();
 
     @Override

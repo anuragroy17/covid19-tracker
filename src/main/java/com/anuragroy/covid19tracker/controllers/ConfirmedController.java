@@ -19,7 +19,7 @@ public class ConfirmedController {
 
     @GetMapping({"/getConfirmedData"})
     public ModelAndView getConfirmedData() {
-        ModelAndView mav = new ModelAndView("confirmed_data_fragment :: confirmed_data");
+        ModelAndView mav = new ModelAndView("fragments/confirmed_data_fragment :: confirmed_data");
         mav.addObject("confirmedLocationStats", confirmedDataService.getConfirmedLocationStats());
         mav.addObject("confirmedStats", confirmedDataService.getTotalConfirmedCases());
         return mav;

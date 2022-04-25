@@ -14,7 +14,7 @@ public class DeathController {
 
     @GetMapping({"/getDeathData"})
     public ModelAndView getDeathData() {
-        ModelAndView mav = new ModelAndView("death_data_fragment :: death_data");
+        ModelAndView mav = new ModelAndView("fragments/death_data_fragment :: death_data");
         mav.addObject("deathLocationStats", deathDataService.getDeathLocationStats());
         mav.addObject("deathStats", deathDataService.getTotalDeathCases());
         return mav;

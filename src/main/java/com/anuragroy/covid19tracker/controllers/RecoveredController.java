@@ -14,7 +14,7 @@ public class RecoveredController {
 
     @GetMapping({"/getRecoveredData"})
     public ModelAndView getRecoveredData() {
-        ModelAndView mav = new ModelAndView("recovered_data_fragment :: recovered_data");
+        ModelAndView mav = new ModelAndView("fragments/recovered_data_fragment :: recovered_data");
         mav.addObject("recoveredLocationStats", recoveryDataService.getRecoveryLocationStats());
         mav.addObject("recoveredStats", recoveryDataService.getTotalRecoveredCases());
         return mav;

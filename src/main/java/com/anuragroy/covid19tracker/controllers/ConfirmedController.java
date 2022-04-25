@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class ConfirmedCasesController {
+public class ConfirmedController {
 
     @Autowired
     private ConfirmedDataService confirmedDataService;
@@ -17,17 +17,11 @@ public class ConfirmedCasesController {
         return "index";
     }
 
-    @GetMapping({"/getConfirmedLocationStats"})
-    public ModelAndView getDeathLocationStats() {
-        ModelAndView mav = new ModelAndView("confirmed_cases_fragment :: confirmed_cases");
+    @GetMapping({"/getConfirmedData"})
+    public ModelAndView getConfirmedData() {
+        ModelAndView mav = new ModelAndView("confirmed_data_fragment :: confirmed_data");
         mav.addObject("confirmedLocationStats", confirmedDataService.getConfirmedLocationStats());
-        return mav;
-    }
-
-    @GetMapping({"/getTotalConfirmedCases"})
-    public ModelAndView getTotalConfirmedCases() {
-        ModelAndView mav = new ModelAndView("confirmed_cases_fragment :: confirmed_cases_stats");
-        mav.addObject("totalConfirmedCases", confirmedDataService.getTotalConfirmedCases());
+        mav.addObject("confirmedStats", confirmedDataService.getTotalConfirmedCases());
         return mav;
     }
 }

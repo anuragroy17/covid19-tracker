@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <div th:fragment="recovered_data">
+        <div id="content">
+            <p th:text="${recoveredStats.totalNewRecoveries}"></p>
+            <p th:text="${recoveredStats.totalReportedRecoveries}"></p>
+            <table class="table table-bordered table-striped" id="recoveredDataTable">
+
+                <thead>
+                    <tr>
+                        <th>State</th>
+                        <th>Country</th>
+                        <th>Latest Total Recovered</th>
+                        <th>Difference from Previous Day</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="recoveredLocationStat: ${recoveredLocationStats}">
+                        <td th:text="${recoveredLocationStat.state}" />
+                        <td th:text="${recoveredLocationStat.country}" />
+                        <td th:text="${recoveredLocationStat.latestTotalRecovered}" />
+                        <td th:text="${recoveredLocationStat.diffFromPrevDay}" />
+
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

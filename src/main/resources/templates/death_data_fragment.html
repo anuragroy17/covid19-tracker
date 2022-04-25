@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <div th:fragment="death_data">
+        <div id="content">
+            <p th:text="${deathStats.totalNewDeaths}"></p>
+            <p th:text="${deathStats.totalReportedDeaths}"></p>
+            <table class="table table-bordered table-striped" id="deathDataTable">
+
+                <thead>
+                    <tr>
+                        <th>State</th>
+                        <th>Country</th>
+                        <th>Latest Total Deaths</th>
+                        <th>Difference from Previous Day</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="deathLocationStat: ${deathLocationStats}">
+                        <td th:text="${deathLocationStat.state}" />
+                        <td th:text="${deathLocationStat.country}" />
+                        <td th:text="${deathLocationStat.latestTotalDeaths}" />
+                        <td th:text="${deathLocationStat.diffFromPrevDay}" />
+
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

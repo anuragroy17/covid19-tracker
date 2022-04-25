@@ -1,39 +1,45 @@
 $(document).ready(function () {
-  $.get('getTotalConfirmedCases')
-    .done(function (fragment) {
-      $('#stats').replaceWith(fragment);
-    })
-    .then(
-      $.get('getConfirmedLocationStats').done(function (fragment) {
-        $('#table_content').replaceWith(fragment);
-        $('#confirmedCaseTable').DataTable({
-          aoColumnDefs: [
-            {
-              bSortable: true,
-              aTargets: [-1] /* 1st one, start by the right */,
-            },
-          ],
-        });
-      })
-    );
+  loadConfirmedData();
 });
 
-function loadConfirmedCasesData() {
-  $.get('getTotalConfirmedCases')
-    .done(function (fragment) {
-      $('#stats').replaceWith(fragment);
-    })
-    .then(
-      $.get('getConfirmedLocationStats').done(function (fragment) {
-        $('#table_content').replaceWith(fragment);
-        $('#confirmedCaseTable').DataTable({
-          aoColumnDefs: [
-            {
-              bSortable: true,
-              aTargets: [-1] /* 1st one, start by the right */,
-            },
-          ],
-        });
-      })
-    );
+function loadConfirmedData() {
+  $.get('getConfirmedData').done(function (fragment) {
+    $('#content').replaceWith(fragment);
+    $('#confirmedDataTable').DataTable({
+      aoColumnDefs: [
+        {
+          bSortable: true,
+          aTargets: [-1] /* 1st one, start by the right */,
+        },
+      ],
+    });
+  });
+}
+
+function loadDeathData() {
+  $.get('getDeathData').done(function (fragment) {
+    $('#content').replaceWith(fragment);
+    $('#deathDataTable').DataTable({
+      aoColumnDefs: [
+        {
+          bSortable: true,
+          aTargets: [-1] /* 1st one, start by the right */,
+        },
+      ],
+    });
+  });
+}
+
+function loadRecoveredData() {
+  $.get('getRecoveredData').done(function (fragment) {
+    $('#content').replaceWith(fragment);
+    $('#recoveredDataTable').DataTable({
+      aoColumnDefs: [
+        {
+          bSortable: true,
+          aTargets: [-1] /* 1st one, start by the right */,
+        },
+      ],
+    });
+  });
 }

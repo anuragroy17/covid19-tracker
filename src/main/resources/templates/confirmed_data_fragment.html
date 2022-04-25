@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <div th:fragment="confirmed_data">
+        <div id="content">
+            <p th:text="${confirmedStats.totalNewCases}"></p>
+            <p th:text="${confirmedStats.totalReportedCases}"></p>
+            <table class="table table-bordered table-striped" id="confirmedDataTable">
+
+                <thead>
+                    <tr>
+                        <th>State</th>
+                        <th>Country</th>
+                        <th>Latest Total Cases</th>
+                        <th>Difference from Previous Day</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="confirmedLocationStat: ${confirmedLocationStats}">
+                        <td th:text="${confirmedLocationStat.state}" />
+                        <td th:text="${confirmedLocationStat.country}" />
+                        <td th:text="${confirmedLocationStat.latestTotalCases}" />
+                        <td th:text="${confirmedLocationStat.diffFromPrevDay}" />
+
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -18,7 +18,7 @@
                                                 <span th:text="${confirmedStats.totalReportedCases}"></span>
                                             </div>
                                             <div class="h6 mb-0 mr-3 text-gray-600">
-                                                Cases reported as of today.
+                                                Cases reported as of <span th:text="${confirmedStats.lastDate}"></span>.
                                             </div>
                                         </div>
                                     </div>
@@ -54,7 +54,7 @@
                                         <tr>
                                             <th>Country</th>
                                             <th>State</th>
-                                            <th>Latest Total Cases</th>
+                                            <th><span th:text="${confirmedStats.lastDate}"></span> Total Cases</th>
                                             <th>Difference from Previous Day</th>
                                         </tr>
                                     </thead>

@@ -43,3 +43,8 @@ function loadRecoveredData() {
     });
   });
 }
+
+$('button.btn').click(function () {
+  $('button.btn').removeClass('active');
+  $(this).addClass('active');
+});

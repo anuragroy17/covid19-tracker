@@ -40,30 +40,42 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <table class="table table-bordered table-striped" id="recoveredDataTable">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12">
+                    <div class="card shadow mb-4" id="table-card">
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped" id="recoveredDataTable">
 
-                    <thead>
-                        <tr>
-                            <th>State</th>
-                            <th>Country</th>
-                            <th>Latest Total Recovered</th>
-                            <th>Difference from Previous Day</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="recoveredLocationStat: ${recoveredLocationStats}">
-                            <td th:text="${recoveredLocationStat.state}" />
-                            <td th:text="${recoveredLocationStat.country}" />
-                            <td th:text="${recoveredLocationStat.latestTotalRecovered}" />
-                            <td th:text="${recoveredLocationStat.diffFromPrevDay}" />
+                                    <thead>
+                                        <tr>
+                                            <th>Country</th>
+                                            <th>State</th>
+                                            <th>Latest Total Recovered</th>
+                                            <th>Difference from Previous Day</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="recoveredLocationStat: ${recoveredLocationStats}">
+                                            <td th:text="${recoveredLocationStat.country}" />
+                                            <td th:text="${recoveredLocationStat.state}" />
+                                            <td th:text="${recoveredLocationStat.latestTotalRecovered}" />
+                                            <td th:text="${recoveredLocationStat.diffFromPrevDay}" />
 
-                        </tr>
-                    </tbody>
+                                        </tr>
+                                    </tbody>
 
-                </table>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
 </body>
 
 </html>

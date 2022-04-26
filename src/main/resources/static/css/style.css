@@ -100,6 +100,18 @@ p {
     border-left: 0.25rem solid var(--success) !important;
 }
 
+a {
+    color: #6e707e !important;
+    cursor: pointer;
+    text-decoration: none !important;
+    background-color: transparent;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #bf3836 !important;
+}
+
 .preloader {
     position: absolute;
     top: 0;
@@ -121,7 +133,7 @@ p {
     color: #eaecf4 !important;
 }
 
-. {
+.text-gray-300 {
     color: #dddfeb !important;
 }
 

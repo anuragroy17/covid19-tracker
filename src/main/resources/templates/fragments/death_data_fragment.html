@@ -40,29 +40,43 @@
                         </div>
                     </div>
                 </div>
-                <table class="table table-bordered table-striped" id="deathDataTable">
-
-                    <thead>
-                        <tr>
-                            <th>State</th>
-                            <th>Country</th>
-                            <th>Latest Total Deaths</th>
-                            <th>Difference from Previous Day</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="deathLocationStat: ${deathLocationStats}">
-                            <td th:text="${deathLocationStat.state}" />
-                            <td th:text="${deathLocationStat.country}" />
-                            <td th:text="${deathLocationStat.latestTotalDeaths}" />
-                            <td th:text="${deathLocationStat.diffFromPrevDay}" />
-
-                        </tr>
-                    </tbody>
-
-                </table>
             </div>
+
+            <div class="row">
+                <div class="col-xl-12 col-lg-12">
+                    <div class="card shadow mb-4" id="table-card">
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped" id="deathDataTable">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Country</th>
+                                            <th>State</th>
+                                            <th>Latest Total Deaths</th>
+                                            <th>Difference from Previous Day</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="deathLocationStat: ${deathLocationStats}">
+                                            <td th:text="${deathLocationStat.country}" />
+                                            <td th:text="${deathLocationStat.state}" />
+                                            <td th:text="${deathLocationStat.latestTotalDeaths}" />
+                                            <td th:text="${deathLocationStat.diffFromPrevDay}" />
+
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
+    </div>
 </body>
 
 </html>

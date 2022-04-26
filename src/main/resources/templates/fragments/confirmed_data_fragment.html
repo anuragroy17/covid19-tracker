@@ -40,29 +40,42 @@
                         </div>
                     </div>
                 </div>
-                <table class="table table-bordered table-striped" id="confirmedDataTable">
+            </div>
 
-                    <thead>
-                        <tr>
-                            <th>State</th>
-                            <th>Country</th>
-                            <th>Latest Total Cases</th>
-                            <th>Difference from Previous Day</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="confirmedLocationStat: ${confirmedLocationStats}">
-                            <td th:text="${confirmedLocationStat.state}" />
-                            <td th:text="${confirmedLocationStat.country}" />
-                            <td th:text="${confirmedLocationStat.latestTotalCases}" />
-                            <td th:text="${confirmedLocationStat.diffFromPrevDay}" />
+            <div class="row">
+                <div class="col-xl-12 col-lg-12">
+                    <div class="card shadow mb-4" id="table-card">
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped" id="confirmedDataTable">
 
-                        </tr>
-                    </tbody>
+                                    <thead>
+                                        <tr>
+                                            <th>Country</th>
+                                            <th>State</th>
+                                            <th>Latest Total Cases</th>
+                                            <th>Difference from Previous Day</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="confirmedLocationStat: ${confirmedLocationStats}">
+                                            <td th:text="${confirmedLocationStat.country}" />
+                                            <td th:text="${confirmedLocationStat.state}" />
+                                            <td th:text="${confirmedLocationStat.latestTotalCases}" />
+                                            <td th:text="${confirmedLocationStat.diffFromPrevDay}" />
 
-                </table>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
 </body>
 
 </html>

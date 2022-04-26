@@ -18,7 +18,7 @@
                                                 <span th:text="${deathStats.totalReportedDeaths}"></span>
                                             </div>
                                             <div class="h6 mb-0 mr-3 text-gray-600">
-                                                Deaths reported as of <span th:text="${deathStats.lastDay}"></span>.
+                                                Deaths reported as of <span th:text="${deathStats.lastDate}"></span>.
                                             </div>
                                         </div>
                                     </div>
@@ -54,7 +54,7 @@
                                         <tr>
                                             <th>Country</th>
                                             <th>State</th>
-                                            <th>Latest Total Deaths</th>
+                                            <th><span th:text="${deathStats.lastDate}"></span> Total Deaths</th>
                                             <th>Difference from Previous Day</th>
                                         </tr>
                                     </thead>

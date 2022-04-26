@@ -1,3 +1,14 @@
+// makes sure the whole site is loaded
+$(window).on('load', function () {
+  $('.loader-text').delay(200).fadeOut();
+  // $('body').addClass('loaded');
+  $('.pk-loader')
+    .delay(200)
+    .fadeOut('slow', function () {
+      $(this).remove();
+    });
+});
+
 $(document).ready(function () {
   loadConfirmedData();
 });

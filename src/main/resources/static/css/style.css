@@ -38,11 +38,18 @@
     box-sizing: border-box;
 }
 
+body,
 html {
     font-family: sans-serif;
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    position: relative;
 }
 
 footer,
@@ -112,19 +119,6 @@ a:hover {
     color: #bf3836 !important;
 }
 
-.preloader {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    background-image: url("https://1.bp.blogspot.com/-XdsIEaUYpJU/XnoUfhR7UJI/AAAAAAAAGmQ/eAS68nRCApg8VzaPI1SjgxVllZ_yBY1iwCLcBGAsYHQ/s1600/Spinner-1s-200px.gif");
-    background-repeat: no-repeat;
-    background-color: #fff;
-    background-position: center;
-}
-
 .text-gray-100 {
     color: #f8f9fc !important;
 }
@@ -159,4 +153,85 @@ a:hover {
 
 .text-gray-900 {
     color: #3a3b45 !important;
+}
+
+.pk-loader {
+    background: #efefef;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 99999;
+}
+
+.pk-loader svg {
+    bottom: 0;
+    height: 70px;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 70px;
+}
+
+.pk-loader svg polygon {
+    stroke-dasharray: 17;
+    -webkit-animation: dash 2.5s cubic-bezier(0.35, 0.04, 0.63, 0.95) infinite;
+    animation: dash 2.5s cubic-bezier(0.35, 0.04, 0.63, 0.95) infinite;
+}
+
+.loader-text {
+    color: #555555;
+    left: 0;
+    letter-spacing: 4px;
+    margin-top: 50px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@-webkit-keyframes dash {
+    to {
+        stroke-dashoffset: 136;
+    }
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: 136;
+    }
+}
+
+.page-item.active .page-link {
+    background-color: lightgrey !important;
+    border: 1px solid black !important;
+}
+
+.page-link,
+.form-select,
+.form-control {
+    color: black !important;
+}
+
+.page-link:focus,
+.form-select:focus,
+.form-control:focus {
+    border: 1px solid black !important;
+    box-shadow: none !important;
+}
+
+body::-webkit-scrollbar {
+    width: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+    background: #1e1e24;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #570978;
 }

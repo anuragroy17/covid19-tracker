@@ -4,31 +4,65 @@
 <body>
     <div th:fragment="death_data">
         <div id="content">
-            <p th:text="${deathStats.totalNewDeaths}"></p>
-            <p th:text="${deathStats.totalReportedDeaths}"></p>
-            <table class="table table-bordered table-striped" id="deathDataTable">
+            <div class="row">
+                <div class="col-xl-4 col-md-4 mb-4">
+                    <div class="card border-left-danger shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Total
+                                    </div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                <span th:text="${deathStats.totalReportedDeaths}"></span>
+                                            </div>
+                                            <div class="h6 mb-0 mr-3 text-gray-600">
+                                                Total deaths reported as of today.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="h6 mb-0 mr-3 text-gray-600">
+                                                Deaths reported since previous day:
+                                                <span class="text-gray-800"
+                                                    th:text="${deathStats.totalNewDeaths}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fa fa-users fa-2x text-info"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-bordered table-striped" id="deathDataTable">
 
-                <thead>
-                    <tr>
-                        <th>State</th>
-                        <th>Country</th>
-                        <th>Latest Total Deaths</th>
-                        <th>Difference from Previous Day</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="deathLocationStat: ${deathLocationStats}">
-                        <td th:text="${deathLocationStat.state}" />
-                        <td th:text="${deathLocationStat.country}" />
-                        <td th:text="${deathLocationStat.latestTotalDeaths}" />
-                        <td th:text="${deathLocationStat.diffFromPrevDay}" />
+                    <thead>
+                        <tr>
+                            <th>State</th>
+                            <th>Country</th>
+                            <th>Latest Total Deaths</th>
+                            <th>Difference from Previous Day</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="deathLocationStat: ${deathLocationStats}">
+                            <td th:text="${deathLocationStat.state}" />
+                            <td th:text="${deathLocationStat.country}" />
+                            <td th:text="${deathLocationStat.latestTotalDeaths}" />
+                            <td th:text="${deathLocationStat.diffFromPrevDay}" />
 
-                    </tr>
-                </tbody>
+                        </tr>
+                    </tbody>
 
-            </table>
+                </table>
+            </div>
         </div>
-    </div>
 </body>
 
 </html>

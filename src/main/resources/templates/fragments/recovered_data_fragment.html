@@ -4,31 +4,66 @@
 <body>
     <div th:fragment="recovered_data">
         <div id="content">
-            <p th:text="${recoveredStats.totalNewRecoveries}"></p>
-            <p th:text="${recoveredStats.totalReportedRecoveries}"></p>
-            <table class="table table-bordered table-striped" id="recoveredDataTable">
+            <div class="row">
+                <div class="col-xl-4 col-md-4 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total
+                                    </div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                <span th:text="${recoveredStats.totalReportedRecoveries}"></span>
+                                            </div>
+                                            <div class="h6 mb-0 mr-3 text-gray-600">
+                                                Total recoveries reported as of today.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="h6 mb-0 mr-3 text-gray-600">
+                                                Recoveries reported since previous day:
+                                                <span class="text-gray-800"
+                                                    th:text="${recoveredStats.totalNewRecoveries}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fa fa-users fa-2x text-info"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <thead>
-                    <tr>
-                        <th>State</th>
-                        <th>Country</th>
-                        <th>Latest Total Recovered</th>
-                        <th>Difference from Previous Day</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="recoveredLocationStat: ${recoveredLocationStats}">
-                        <td th:text="${recoveredLocationStat.state}" />
-                        <td th:text="${recoveredLocationStat.country}" />
-                        <td th:text="${recoveredLocationStat.latestTotalRecovered}" />
-                        <td th:text="${recoveredLocationStat.diffFromPrevDay}" />
+                <table class="table table-bordered table-striped" id="recoveredDataTable">
 
-                    </tr>
-                </tbody>
+                    <thead>
+                        <tr>
+                            <th>State</th>
+                            <th>Country</th>
+                            <th>Latest Total Recovered</th>
+                            <th>Difference from Previous Day</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="recoveredLocationStat: ${recoveredLocationStats}">
+                            <td th:text="${recoveredLocationStat.state}" />
+                            <td th:text="${recoveredLocationStat.country}" />
+                            <td th:text="${recoveredLocationStat.latestTotalRecovered}" />
+                            <td th:text="${recoveredLocationStat.diffFromPrevDay}" />
 
-            </table>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
         </div>
-    </div>
 </body>
 
 </html>

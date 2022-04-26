@@ -4,31 +4,65 @@
 <body>
     <div th:fragment="confirmed_data">
         <div id="content">
-            <p th:text="${confirmedStats.totalNewCases}"></p>
-            <p th:text="${confirmedStats.totalReportedCases}"></p>
-            <table class="table table-bordered table-striped" id="confirmedDataTable">
+            <div class="row">
+                <div class="col-xl-4 col-md-4 mb-4">
+                    <div class="card border-left-warn shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total
+                                    </div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                <span th:text="${confirmedStats.totalReportedCases}"></span>
+                                            </div>
+                                            <div class="h6 mb-0 mr-3 text-gray-600">
+                                                Total cases reported as of today.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="h6 mb-0 mr-3 text-gray-600">
+                                                New cases reported since previous day:
+                                                <span class="text-gray-800"
+                                                    th:text="${confirmedStats.totalNewCases}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fa fa-users fa-2x text-info"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-bordered table-striped" id="confirmedDataTable">
 
-                <thead>
-                    <tr>
-                        <th>State</th>
-                        <th>Country</th>
-                        <th>Latest Total Cases</th>
-                        <th>Difference from Previous Day</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="confirmedLocationStat: ${confirmedLocationStats}">
-                        <td th:text="${confirmedLocationStat.state}" />
-                        <td th:text="${confirmedLocationStat.country}" />
-                        <td th:text="${confirmedLocationStat.latestTotalCases}" />
-                        <td th:text="${confirmedLocationStat.diffFromPrevDay}" />
+                    <thead>
+                        <tr>
+                            <th>State</th>
+                            <th>Country</th>
+                            <th>Latest Total Cases</th>
+                            <th>Difference from Previous Day</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="confirmedLocationStat: ${confirmedLocationStats}">
+                            <td th:text="${confirmedLocationStat.state}" />
+                            <td th:text="${confirmedLocationStat.country}" />
+                            <td th:text="${confirmedLocationStat.latestTotalCases}" />
+                            <td th:text="${confirmedLocationStat.diffFromPrevDay}" />
 
-                    </tr>
-                </tbody>
+                        </tr>
+                    </tbody>
 
-            </table>
+                </table>
+            </div>
         </div>
-    </div>
 </body>
 
 </html>

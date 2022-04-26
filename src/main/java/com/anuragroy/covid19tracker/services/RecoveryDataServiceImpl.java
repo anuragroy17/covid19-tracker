@@ -17,8 +17,12 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.StringReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class RecoveryDataServiceImpl implements RecoveryDataService {
@@ -30,6 +34,8 @@ public class RecoveryDataServiceImpl implements RecoveryDataService {
 
     private List<RecoveredLocationStats> recoveredLocationStats = new ArrayList<>();
 
+    private String lastDate;
+
     @PostConstruct
     @Scheduled(cron = "* * 1 * * *")
     public void fetchDeathsData() throws IOException {
@@ -37,12 +43,13 @@ public class RecoveryDataServiceImpl implements RecoveryDataService {
 
         HttpGet request = new HttpGet(VIRUS_DATA_URL_RECOVERIES);
         try (CloseableHttpResponse response = httpClient.execute(request)) {
-//            System.out.println(response.getStatusLine().toString());
             HttpEntity entity = response.getEntity();
             if (entity != null) {
                 String result = EntityUtils.toString(entity);
                 StringReader csvBodyReaders = new StringReader(result);
-                Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvBodyReaders);
+                Iterable<CSVRecord> records = CSVFormat.EXCEL.withHeader().withSkipHeaderRecord(false).parse(csvBodyReaders);
+                Set<String> headers = records.iterator().next().toMap().keySet();
+                setLastDate(headers);
                 for (CSVRecord record : records) {
                     RecoveredLocationStats locationStat = new RecoveredLocationStats();
 //                    locationStat.setState(record.get("Province/State"));
@@ -69,6 +76,18 @@ public class RecoveryDataServiceImpl implements RecoveryDataService {
         }
     }
 
+    private void setLastDate(Set<String> headers) {
+        SimpleDateFormat df1 = new SimpleDateFormat("MM/dd/yy");
+        SimpleDateFormat df2 = new SimpleDateFormat("dd MMM yyyy");
+        Date startDate;
+        try {
+            startDate = df1.parse(headers.stream().skip(headers.size() - 1).findFirst().get());
+            lastDate = df2.format(startDate);
+        } catch (ParseException e) {
+            lastDate = "today";
+        }
+    }
+
     @Override
     public List<RecoveredLocationStats> getRecoveryLocationStats() {
         return recoveredLocationStats;
@@ -79,6 +98,7 @@ public class RecoveryDataServiceImpl implements RecoveryDataService {
         TotalRecovered totals = new TotalRecovered();
         totals.setTotalReportedRecoveries(recoveredLocationStats.stream().mapToInt(stat -> stat.getLatestTotalRecovered()).sum());
         totals.setTotalNewRecoveries(recoveredLocationStats.stream().mapToInt(stat -> stat.getDiffFromPrevDay()).sum());
+        totals.setLastDate(lastDate);
         return totals;
     }
 }

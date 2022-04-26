@@ -18,7 +18,8 @@
                                                 <span th:text="${recoveredStats.totalReportedRecoveries}"></span>
                                             </div>
                                             <div class="h6 mb-0 mr-3 text-gray-600">
-                                                Recoveries reported as of today.
+                                                Recoveries reported as of <span
+                                                    th:text="${recoveredStats.lastDay}"></span>.
                                             </div>
                                         </div>
                                     </div>

@@ -17,8 +17,12 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.StringReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class DeathDataServiceImpl implements DeathDataService{
@@ -30,6 +34,8 @@ public class DeathDataServiceImpl implements DeathDataService{
 
     private List<DeathLocationStats> deathLocationStats = new ArrayList<>();
 
+    private String lastDate;
+
     @Override
     public List<DeathLocationStats> getDeathLocationStats() {
         return deathLocationStats;
@@ -40,6 +46,7 @@ public class DeathDataServiceImpl implements DeathDataService{
         TotalDeaths totals = new TotalDeaths();
         totals.setTotalReportedDeaths(deathLocationStats.stream().mapToInt(stat -> stat.getLatestTotalDeaths()).sum());
         totals.setTotalNewDeaths(deathLocationStats.stream().mapToInt(stat -> stat.getDiffFromPrevDay()).sum());
+        totals.setLastDate(lastDate);
         return totals;
     }
 
@@ -50,12 +57,13 @@ public class DeathDataServiceImpl implements DeathDataService{
 
         HttpGet request = new HttpGet(VIRUS_DATA_URL_DEATH);
         try (CloseableHttpResponse response = httpClient.execute(request)) {
-//            System.out.println(response.getStatusLine().toString());
             HttpEntity entity = response.getEntity();
             if (entity != null) {
                 String result = EntityUtils.toString(entity);
                 StringReader csvBodyReaders = new StringReader(result);
-                Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvBodyReaders);
+                Iterable<CSVRecord> records = CSVFormat.EXCEL.withHeader().withSkipHeaderRecord(false).parse(csvBodyReaders);
+                Set<String> headers = records.iterator().next().toMap().keySet();
+                setLastDate(headers);
                 for (CSVRecord record : records) {
                     DeathLocationStats locationStat = new DeathLocationStats();
                     locationStat.setState(record.get("Province/State"));
@@ -78,6 +86,18 @@ public class DeathDataServiceImpl implements DeathDataService{
                 }
                 this.deathLocationStats = newStats;
             }
+        }
+    }
+
+    private void setLastDate(Set<String> headers) {
+        SimpleDateFormat df1 = new SimpleDateFormat("MM/dd/yy");
+        SimpleDateFormat df2 = new SimpleDateFormat("dd MMM yyyy");
+        Date startDate;
+        try {
+            startDate = df1.parse(headers.stream().skip(headers.size() - 1).findFirst().get());
+            lastDate = df2.format(startDate);
+        } catch (ParseException e) {
+            lastDate = "today";
         }
     }
 

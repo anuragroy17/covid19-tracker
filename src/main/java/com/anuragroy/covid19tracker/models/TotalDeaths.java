@@ -3,6 +3,7 @@ package com.anuragroy.covid19tracker.models;
 public class TotalDeaths {
     private int totalNewDeaths;
     private int totalReportedDeaths;
+    private String lastDate;
 
     public int getTotalNewDeaths() {
         return totalNewDeaths;
@@ -18,5 +19,13 @@ public class TotalDeaths {
 
     public void setTotalReportedDeaths(int totalReportedDeaths) {
         this.totalReportedDeaths = totalReportedDeaths;
+    }
+
+    public void setLastDate(String lastDate) {
+        this.lastDate = lastDate;
+    }
+
+    public String getLastDate() {
+        return lastDate;
     }
 }

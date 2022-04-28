@@ -20,7 +20,7 @@ Track CoronaVirus cases by Countries - cases updated daily
 <li>Heroku</li>
 </ul>
 
-<h5>Version 2 (Live Data) - <a href="https://covid19-tracker-v2.netlify.app/"></a></h4>
+<h5>Version 2 (Live Data) - <a href="https://covid19-tracker-v2.netlify.app/">Covid19-Tracker-V2</a></h4>
 
 <h6>Recovery data is no longer supported - <a href="https://github.com/CSSEGISandData/COVID-19/issues/4465">Issue 4465</a>
 

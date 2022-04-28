@@ -24,7 +24,7 @@
                                         </div>
                                     </div>
                                     <hr />
-                                    <div class="row no-gutters align-items-center">
+                                    <!-- <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="h6 mb-0 mr-3 text-gray-600">
                                                 Recoveries reported since previous day:
@@ -32,7 +32,16 @@
                                                     th:text="${#numbers.formatDecimal(recoveredStats.totalNewRecoveries, 0, 'COMMA', 0, 'POINT')}"></span>
                                             </div>
                                         </div>
+                                    </div> -->
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="h6 mb-0 mr-3 text-gray-600">
+                                                <i class="fas fa-exclamation-circle text-danger"></i>
+                                                <a href="https://github.com/CSSEGISandData/COVID-19/issues/4465" target="_blank">Recovery Data Discontinued by JHU ↦</a>
+                                            </div>
+                                        </div>
                                     </div>
+                                    
                                 </div>
                                 <div class="col-auto">
                                     <i class="fa fa-users fa-2x text-success"></i>

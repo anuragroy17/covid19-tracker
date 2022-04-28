@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="html_head">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Covid-19 Tracker</title>
+    <link rel="shortcut icon" type="image/png" th:href="@{/images/favicon.ico}" />
+    <link rel="stylesheet" type="text/css" th:href="@{css/dataTables.bootstrap5.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+    <div th:fragment="loader" class="pk-loader">
+        <svg id="triangle" viewBox="-3 -4 39 39">
+            <polygon fill="#EFEFEF" stroke="#555" stroke-width="1" points="16,0 32,32 0,32"></polygon>
+        </svg>
+        <div class="loader-text">© 2020 Anurag.</div>
+    </div>
+
+    <div th:fragment="info">
+        <div class="card shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Project Info:
+                        </div>
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <div class="h6 mb-0 mr-3 mt-2 text-gray-800">
+                                    A Web Scraping project scraping data from
+                                    <a target="_blank" href="https://github.com/CSSEGISandData/COVID-19">
+                                        CSSE of Johns Hopkins University ↦
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <div class="h6 mb-0 mr-3 mt-3 text-gray-800">
+                                    <a target="_blank" href="https://github.com/anuragroy17/covid19-tracker">Github
+                                        Project Repo ↦</a>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <div class="h6 mb-0 mr-3 text-gray-600">
+                                    <a target="_blank" href="https://covid19-tracker-v2.netlify.app/">Version 2 with
+                                        Live Data ↦</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-solid fa-link"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

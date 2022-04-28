@@ -101,7 +101,7 @@ p {
 }
 
 a {
-    color: #6e707e !important;
+    color: #dd882c !important;
     cursor: pointer;
     text-decoration: none !important;
     background-color: transparent;
@@ -227,4 +227,10 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
     background: #570978;
+}
+
+@media (max-width: 768px) {
+    .remove-col {
+        display: none !important;
+    }
 }

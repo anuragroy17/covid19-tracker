@@ -15,7 +15,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                <span th:text="${recoveredStats.totalReportedRecoveries}"></span>
+                                                <span th:text="${#numbers.formatDecimal(recoveredStats.totalReportedRecoveries, 0, 'COMMA', 0, 'POINT')}"></span>
                                             </div>
                                             <div class="h6 mb-0 mr-3 text-gray-600">
                                                 Recoveries reported as of <span
@@ -29,7 +29,7 @@
                                             <div class="h6 mb-0 mr-3 text-gray-600">
                                                 Recoveries reported since previous day:
                                                 <span class="text-gray-800"
-                                                    th:text="${recoveredStats.totalNewRecoveries}"></span>
+                                                    th:text="${#numbers.formatDecimal(recoveredStats.totalNewRecoveries, 0, 'COMMA', 0, 'POINT')}"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -67,8 +67,8 @@
                                         <tr th:each="recoveredLocationStat: ${recoveredLocationStats}">
                                             <td th:text="${recoveredLocationStat.country}" />
                                             <td th:text="${recoveredLocationStat.state}" />
-                                            <td th:text="${recoveredLocationStat.latestTotalRecovered}" />
-                                            <td th:text="${recoveredLocationStat.diffFromPrevDay}" />
+                                            <td th:text="${#numbers.formatDecimal(recoveredLocationStat.latestTotalRecovered, 0, 'COMMA', 0, 'POINT')}" />
+                                            <td th:text="${#numbers.formatDecimal(recoveredLocationStat.diffFromPrevDay, 0, 'COMMA', 0, 'POINT')}" />
 
                                         </tr>
                                     </tbody>

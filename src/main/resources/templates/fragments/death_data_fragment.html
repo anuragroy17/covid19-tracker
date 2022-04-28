@@ -15,7 +15,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                <span th:text="${deathStats.totalReportedDeaths}"></span>
+                                                <span th:text="${#numbers.formatDecimal(deathStats.totalReportedDeaths, 0, 'COMMA', 0, 'POINT')}"></span>
                                             </div>
                                             <div class="h6 mb-0 mr-3 text-gray-600">
                                                 Deaths reported as of <span th:text="${deathStats.lastDate}"></span>.
@@ -28,7 +28,7 @@
                                             <div class="h6 mb-0 mr-3 text-gray-600">
                                                 Deaths reported since previous day:
                                                 <span class="text-gray-800"
-                                                    th:text="${deathStats.totalNewDeaths}"></span>
+                                                    th:text="${#numbers.formatDecimal(deathStats.totalNewDeaths, 0, 'COMMA', 0, 'POINT')}"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -66,8 +66,8 @@
                                         <tr th:each="deathLocationStat: ${deathLocationStats}">
                                             <td th:text="${deathLocationStat.country}" />
                                             <td th:text="${deathLocationStat.state}" />
-                                            <td th:text="${deathLocationStat.latestTotalDeaths}" />
-                                            <td th:text="${deathLocationStat.diffFromPrevDay}" />
+                                            <td th:text="${#numbers.formatDecimal(deathLocationStat.latestTotalDeaths, 0, 'COMMA', 0, 'POINT')}" />
+                                            <td th:text="${#numbers.formatDecimal(deathLocationStat.diffFromPrevDay, 0, 'COMMA', 0, 'POINT')}" />
 
                                         </tr>
                                     </tbody>

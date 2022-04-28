@@ -15,8 +15,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                <span class="repnum"
-                                                    th:text="${confirmedStats.totalReportedCases}"></span>
+                                                <span th:text="${#numbers.formatDecimal(confirmedStats.totalReportedCases, 0, 'COMMA', 0, 'POINT')}"></span>
                                             </div>
                                             <div class="h6 mb-0 mr-3 text-gray-600">
                                                 Cases reported as of <span th:text="${confirmedStats.lastDate}"></span>.
@@ -29,7 +28,7 @@
                                             <div class="h6 mb-0 mr-3 text-gray-600">
                                                 New cases reported since previous day:
                                                 <span class="text-gray-800"
-                                                    th:text="${confirmedStats.totalNewCases}"></span>
+                                                    th:text="${#numbers.formatDecimal(confirmedStats.totalNewCases, 0, 'COMMA', 0, 'POINT')}"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -67,8 +66,8 @@
                                         <tr th:each="confirmedLocationStat: ${confirmedLocationStats}">
                                             <td th:text="${confirmedLocationStat.country}" />
                                             <td th:text="${confirmedLocationStat.state}" />
-                                            <td th:text="${confirmedLocationStat.latestTotalCases}" />
-                                            <td th:text="${confirmedLocationStat.diffFromPrevDay}" />
+                                            <td th:text="${#numbers.formatDecimal(confirmedLocationStat.latestTotalCases, 0, 'COMMA', 0, 'POINT')}" />
+                                            <td th:text="${#numbers.formatDecimal(confirmedLocationStat.diffFromPrevDay, 0, 'COMMA', 0, 'POINT')}" />
 
                                         </tr>
                                     </tbody>

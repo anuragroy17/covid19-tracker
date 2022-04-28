@@ -1,67 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-      <meta charset="UTF-8">
-      <meta name="viewport"
-            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>Covid-19 Tracker</title>
-      <link th:href="@{/css/style.css}" rel="stylesheet" />
-      <link rel="shortcut icon" type="image/png" th:href="@{/images/favicon.ico}" />
-      <link rel="stylesheet" type="text/css"
-            href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" />
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet"
-            type="text/css" />
-</head>
+<head th:replace="fragments/others :: html_head" />
 
 <body>
-      <div class="pk-loader">
-            <svg id="triangle" viewBox="-3 -4 39 39">
-                  <polygon fill="#EFEFEF" stroke="#555" stroke-width="1" points="16,0 32,32 0,32"></polygon>
-            </svg>
-            <div class="loader-text">© 2020 Anurag.</div>
-      </div>
+      <div th:replace="fragments/others :: loader"></div>
+
       <div class="content">
-            <nav class="navbar navbar-expand-sm navbar-light bg-white topbar mb-4 static-top shadow">
-                  <div class="container-fluid">
-                        <div class="navbar-brand">
-                              <img th:src="@{/images/corona.png}" width="50" height="50" />
-                              <h5 class="font-weight-bold text-uppercase mb-1 text-gray-600" style="display: contents;">
-                                    COVID-19 CORONAVIRUS
-                                    Tracker</h5>
-                        </div>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                              data-bs-target="#collapsibleNavbar">
-                              <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                              <button class="btn btn-outline-secondary me-2 active" type="button"
-                                    onclick="loadConfirmedData()">Confirmed</button>
-                              <button class="btn btn-outline-secondary me-2" type="button"
-                                    onclick="loadDeathData()">Deaths</button>
-                              <button class="btn btn-outline-secondary me-2" type="button"
-                                    onclick="loadRecoveredData()">Recovered</button>
-                        </div>
-                  </div>
-            </nav>
+            <nav th:replace="fragments/header :: header" />
 
             <div class="container-fluid">
                   <div class="main">
                         <div id="content"></div>
                   </div>
             </div>
-            <footer class="footer mt-auto py-1 bg-light text-center">
-                  <div class="container">
-                        <span class="text-gray-600">Copyrights © 2020
-                              <a href="https://www.anuragroy.com/" target="_blank">
-                                    Anurag Roy
-                              </a>
-                        </span>
-                  </div>
-            </footer>
+
+            <footer th:replace="fragments/footer :: footer" />
       </div>
 
 

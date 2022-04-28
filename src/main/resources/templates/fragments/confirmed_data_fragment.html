@@ -15,7 +15,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                <span th:text="${confirmedStats.totalReportedCases}"></span>
+                                                <span class="repnum"
+                                                    th:text="${confirmedStats.totalReportedCases}"></span>
                                             </div>
                                             <div class="h6 mb-0 mr-3 text-gray-600">
                                                 Cases reported as of <span th:text="${confirmedStats.lastDate}"></span>.

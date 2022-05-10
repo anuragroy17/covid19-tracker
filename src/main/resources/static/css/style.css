@@ -239,3 +239,15 @@ body::-webkit-scrollbar-thumb {
         display: none !important;
     }
 }
+
+@media (max-width: 576px) {
+    #collapsibleNavbar {
+        margin-top: 0.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .title {
+        margin-bottom: 0.5rem;
+    }
+}

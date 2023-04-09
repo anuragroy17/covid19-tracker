@@ -11,4 +11,5 @@ RUN mvn clean package -DskipTests
 FROM openjdk:8-jdk-alpine
 MAINTAINER anuragroy.com
 COPY --from=build /target/covid-19-tracker-0.0.1-SNAPSHOT.jar covid-19-tracker.jar
+EXPOSE 8080
 ENTRYPOINT ["java","-jar","/covid-19-tracker.jar"]
